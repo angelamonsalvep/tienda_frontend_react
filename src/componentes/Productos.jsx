@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-const API_URL = "http://localhost:5000/productos";
+export const API_URL = "http://localhost:5000/productos";
 
-function Productos({ children }) {
+function Productos({ children, reload }) {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
@@ -18,7 +19,7 @@ function Productos({ children }) {
         setError("Error al cargar productos");
         setLoading(false);
       });
-  }, []);
+  }, [reload]);
 
   return children({ productos, loading, error });
 }
