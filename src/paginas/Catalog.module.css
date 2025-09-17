@@ -1,0 +1,93 @@
+
+/* Layout principal del catálogo */
+.catalogContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.catalogMain {
+  flex: 1;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.productCard {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  background: var(--color-card-bg);
+}
+
+.productCard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.productImage {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.productName {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--color-card-text);
+}
+
+.productPrice {
+  color: var(--color-price);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.productDescription {
+  font-size: 0.95rem;
+  color: var(--color-card-text);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.addToCartBtn {
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.addToCartBtn:hover {
+  background: var(--color-btn-hover);
+}
