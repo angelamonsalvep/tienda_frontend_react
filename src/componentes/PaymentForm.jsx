@@ -3,6 +3,7 @@ import PaymentMethodSelector from './PaymentMethodSelector';
 import CardForm from './CardForm';
 import BillForm from './BillForm';
 import PayButton from './PayButton';
+import styles from './PaymentForm.module.css';
 
 const PaymentForm = ({ totalAmount, onPay }) => {
   const [method, setMethod] = useState('debito');
@@ -12,11 +13,11 @@ const PaymentForm = ({ totalAmount, onPay }) => {
   const showCardForm = method === 'debito' || method === 'credito';
 
   return (
-    <div className="payment-form">
+    <div className={styles.paymentForm}>
       <PaymentMethodSelector value={method} onChange={setMethod} />
       {showCardForm && <CardForm form={cardForm} onChange={setCardForm} />}
       <BillForm form={billForm} onChange={setBillForm} />
-      <div className="total-amount">Total: ${totalAmount}</div>
+      <div className={styles.totalAmount}>Total: ${totalAmount}</div>
       <PayButton onClick={() => onPay({ method, cardForm, billForm })} disabled={false} />
     </div>
   );

@@ -1,21 +1,21 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './header.module.css';
 
-const Header = ({ title, onToggleTheme, onCartClick, cartCount }) => {
+const Header = ({ title, onToggleTheme, onCartClick, cartCount, theme }) => {
   const navigate = useNavigate();
   return (
-    <header className="header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    <header className={styles.header}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <button onClick={onCartClick} className="cart-icon">
+        <button onClick={onCartClick} className={styles.cartIcon}>
           🛒
           {cartCount > 0 && (
-            <span className="cart-count">{cartCount}</span>
+            <span className={styles.cartCount}>{cartCount}</span>
           )}
         </button>
         <button
           onClick={() => navigate('/')}
-          className="catalog-icon"
-          style={{ marginLeft: 16, background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          className={styles.catalogIcon}
           title="Ir al catálogo"
         >
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="#388e3c">
@@ -25,8 +25,7 @@ const Header = ({ title, onToggleTheme, onCartClick, cartCount }) => {
         </button>
         <button
           onClick={() => navigate('/crud-productos')}
-          className="crud-icon"
-          style={{ marginLeft: 16, background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          className={styles.crudIcon}
           title="Ir al CRUD de productos"
         >
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="#1976d2">
@@ -36,8 +35,8 @@ const Header = ({ title, onToggleTheme, onCartClick, cartCount }) => {
           </svg>
         </button>
       </div>
-  <h1 style={{ margin: '0 0 0 32px' }}>{title}</h1>
-      <button onClick={onToggleTheme} className="theme-toggle">🌗</button>
+      <h1 style={{ margin: '0 0 0 32px' }}>{title}</h1>
+      <button onClick={onToggleTheme} className={styles.themeToggle}>🌗</button>
     </header>
   );
 };

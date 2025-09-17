@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Catalog from './paginas/catalog';
 import ConfirmProducts from './paginas/ConfirmProducts';
 import PaymentFormPage from './paginas/PaymentForm';
@@ -11,15 +11,25 @@ function App() {
   const [cart, setCart] = useState([]);
   const [theme, setTheme] = useState('light');
 
+  useEffect(() => {
+    document.body.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
+
   const handlePay = (paymentData) => {
     alert('¡Pago realizado!');
     setCart([]);
   };
   const handleToggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
-  return (
-    <Router>
-      <div className={`app-container${theme === 'dark' ? ' dark-theme' : ''}`}>
+  function AppRoutes() {
+    const navigate = useNavigate();
+    const commonProps = {
+      onToggleTheme: handleToggleTheme,
+      theme,
+      onCartClick: () => navigate('/confirm'),
+    };
+    return (
+      <div className={`app-container${theme === 'dark' ? ' dark' : ''}`}>
         <Routes>
           <Route
             path="/"
@@ -27,8 +37,8 @@ function App() {
               <Catalog
                 cart={cart}
                 setCart={setCart}
-                onGoToCart={() => window.location.replace('/confirm')}
-                onToggleTheme={handleToggleTheme}
+                onGoToCart={() => navigate('/confirm')}
+                {...commonProps}
               />
             }
           />
@@ -37,8 +47,8 @@ function App() {
             element={
               <ConfirmProducts
                 cart={cart}
-                onGoToPay={() => window.location.replace('/pay')}
-                onToggleTheme={handleToggleTheme}
+                onGoToPay={() => navigate('/pay')}
+                {...commonProps}
               />
             }
           />
@@ -48,24 +58,30 @@ function App() {
               <PaymentFormPage
                 cart={cart}
                 onPay={handlePay}
-                onToggleTheme={handleToggleTheme}
+                {...commonProps}
               />
             }
           />
           <Route
             path="/crud-productos"
-            element={<ProductoCRUD />}
+            element={<ProductoCRUD {...commonProps} />}
           />
           <Route
             path="/crud-productos/nuevo"
-            element={<ProductoFormPage />}
+            element={<ProductoFormPage {...commonProps} />}
           />
           <Route
             path="/crud-productos/editar/:id"
-            element={<ProductoFormPage />}
+            element={<ProductoFormPage {...commonProps} />}
           />
         </Routes>
       </div>
+    );
+  }
+
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 }

@@ -1,9 +1,10 @@
 import React from 'react';
 import ProductRow from './ProductRow';
+import styles from './ProductTable.module.css';
 
 export default function ProductTable({ products, onEdit, onDelete }) {
   return (
-    <table width="100%" border="1" cellPadding="5" style={{ borderCollapse: 'collapse' }}>
+    <table className={styles.table}>
       <thead>
         <tr>
           <th>Imagen</th>

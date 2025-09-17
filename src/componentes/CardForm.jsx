@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './CardForm.module.css';
 
 const CardForm = ({ form, onChange }) => (
-  <div className="card-form">
+  <div className={styles.cardForm}>
     <input
       type="text"
       placeholder="Nombre del titular"

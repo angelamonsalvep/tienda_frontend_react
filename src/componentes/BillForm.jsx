@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './BillForm.module.css';
 
 const BillForm = ({ form, onChange }) => (
-  <div className="bill-form">
+  <div className={styles.billForm}>
     <input
       type="text"
       placeholder="Nombre"

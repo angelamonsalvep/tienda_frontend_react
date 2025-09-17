@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../componentes/header';
 import Productos from '../componentes/Productos';
 import ProductTable from '../componentes/ProductTable';
+import styles from './ProductoCRUD.module.css';
 
-export default function ProductoCRUD() {
+export default function ProductoCRUD({ onToggleTheme, theme, onCartClick }) {
   const navigate = useNavigate();
   const [reload, setReload] = React.useState(false);
 
@@ -17,15 +18,15 @@ export default function ProductoCRUD() {
 
   return (
     <>
-      <Header title="Gestión de Productos" />
-  <Productos reload={reload}>
+  <Header title="Gestión de Productos" onToggleTheme={onToggleTheme} theme={theme} onCartClick={onCartClick} />
+      <Productos reload={reload}>
         {({ productos, loading, error }) => (
-          <div style={{ maxWidth: 600, margin: 'auto', padding: 20 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-              <h2 style={{ margin: 0 }}>Listado de Productos</h2>
+          <div className={styles.crudContainer}>
+            <div className={styles.crudHeader}>
+              <h2 className={styles.crudTitle}>Listado de Productos</h2>
               <button
                 onClick={() => navigate('/crud-productos/nuevo')}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className={styles.addProductBtn}
                 title="Agregar producto"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="#1976d2">
@@ -37,7 +38,7 @@ export default function ProductoCRUD() {
             {loading ? (
               <p>Cargando productos...</p>
             ) : error ? (
-              <p style={{ color: 'red' }}>{error}</p>
+              <p className={styles.errorMsg}>{error}</p>
             ) : (
               <ProductTable
                 products={productos}

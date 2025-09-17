@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styles from './Usuarios.module.css';
 
 const API_URL = "http://localhost:5000/usuarios"; // Cambia la URL si tu API corre en otro puerto o ruta
 
@@ -21,12 +22,12 @@ function Usuarios() {
   }, []);
 
   if (loading) return <p>Cargando usuarios...</p>;
-  if (error) return <p>{error}</p>;
+  if (error) return <p className={styles.errorMsg}>{error}</p>;
 
   return (
-    <div>
-      <h2>Lista de Usuarios</h2>
-      <ul>
+    <div className={styles.usuariosContainer}>
+      <h2 className={styles.usuariosTitle}>Lista de Usuarios</h2>
+      <ul className={styles.usuariosList}>
         {usuarios.map((u) => (
           <li key={u.id_usuario}>
             {u.nombre_usuario} ({u.email})

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './ProductRow.module.css';
 
 export default function ProductRow({ product, onEdit, onDelete }) {
   return (
@@ -8,11 +9,11 @@ export default function ProductRow({ product, onEdit, onDelete }) {
           <img
             src={product.imagen_url}
             alt={product.nombre_producto || product.nombre}
-            style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 4 }}
+            className={styles.productImage}
             onError={e => { e.target.onerror = null; e.target.src = '/vite.svg'; }}
           />
         ) : (
-          <img src="/vite.svg" alt="Sin imagen" style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 4, opacity: 0.5 }} />
+          <img src="/vite.svg" alt="Sin imagen" className={styles.productImageDefault} />
         )}
       </td>
       <td>{product.nombre_producto || product.nombre}</td>
@@ -21,7 +22,7 @@ export default function ProductRow({ product, onEdit, onDelete }) {
       <td style={{ textAlign: 'center' }}>
         <span
           title="Editar"
-          style={{ cursor: 'pointer', marginRight: 10 }}
+          className={styles.actionIcon}
           onClick={() => onEdit(product)}
         >
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#1976d2">
@@ -31,7 +32,7 @@ export default function ProductRow({ product, onEdit, onDelete }) {
         </span>
         <span
           title="Eliminar"
-          style={{ cursor: 'pointer' }}
+          className={styles.actionIcon}
           onClick={() => onDelete(product.id_producto)}
         >
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#d32f2f">

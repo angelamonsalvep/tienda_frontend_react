@@ -4,7 +4,7 @@ import Header from '../componentes/header';
 import ProductForm from '../componentes/ProductForm';
 import { API_URL } from '../componentes/Productos';
 
-export default function ProductoFormPage() {
+export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const isEdit = Boolean(id);
@@ -67,7 +67,7 @@ export default function ProductoFormPage() {
 
   return (
     <>
-      <Header title={isEdit ? 'Editar producto' : 'Agregar producto'} />
+      <Header title={isEdit ? 'Editar producto' : 'Agregar producto'} onToggleTheme={onToggleTheme} theme={theme} onCartClick={onCartClick} />
       <div style={{ maxWidth: 500, margin: 'auto', padding: 20 }}>
         <h2>{isEdit ? 'Editar producto' : 'Agregar producto'}</h2>
         {loading ? <p>Cargando...</p> : (

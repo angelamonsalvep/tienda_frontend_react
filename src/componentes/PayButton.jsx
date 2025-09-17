@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './PayButton.module.css';
 
 const PayButton = ({ onClick, disabled }) => (
-  <button onClick={onClick} disabled={disabled} className="pay-btn">
+  <button onClick={onClick} disabled={disabled} className={styles.payBtn}>
     Pagar
   </button>
 );

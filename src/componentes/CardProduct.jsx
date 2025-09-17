@@ -1,10 +1,11 @@
 import React from 'react';
 import Product from './product';
 import AddToCartButton from './AddToCartButton';
+import styles from './CardProduct.module.css';
 
 const CardProduct = ({ product, onAddToCart }) => {
 	return (
-		<div className="card-product">
+		<div className={styles.cardProduct}>
 			<Product product={product} />
 			<AddToCartButton onClick={onAddToCart} />
 		</div>

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../componentes/header';
 import CardProduct from '../componentes/CardProduct';
 import Productos from '../componentes/Productos';
+import styles from './Catalog.module.css';
 
 const Catalog = ({ cart, setCart, onGoToCart, onToggleTheme }) => {
 	const handleAddToCart = (product) => {
@@ -9,10 +10,11 @@ const Catalog = ({ cart, setCart, onGoToCart, onToggleTheme }) => {
 	};
 
 	return (
-		<div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+		<div className={styles.catalogContainer}>
 			<Header title="Catálogo" onCartClick={onGoToCart} onToggleTheme={onToggleTheme} cartCount={cart.length} />
-			<div className="main-content" style={{flex: 1}}>
-				<div className="product-list">
+			<main className={styles.catalogMain}>
+				<h2 className={styles.title}>Catálogo de Productos</h2>
+				<div className={styles.productList}>
 					<Productos>
 						{({ productos, loading, error }) => (
 							loading ? (
@@ -27,8 +29,8 @@ const Catalog = ({ cart, setCart, onGoToCart, onToggleTheme }) => {
 						)}
 					</Productos>
 				</div>
-			</div>
-			<footer className="footer">MiniTienda © 2025</footer>
+			</main>
+			<footer style={{ textAlign: 'center', marginTop: '2rem', color: '#888' }}>MiniTienda © 2025</footer>
 		</div>
 	);
 };
