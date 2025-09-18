@@ -34,6 +34,16 @@ const Header = ({ title, onToggleTheme, onCartClick, cartCount, theme }) => {
             <path d="M9 12h6v2H9zm0 4h6v2H9z" opacity="0.5"/>
           </svg>
         </button>
+        <button
+          onClick={() => navigate('/dashboard')}
+          className={styles.crudIcon}
+          title="Ir al Dashboard de gráficas"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="#ff9800">
+            <path d="M0 0h24v24H0V0z" fill="none"/>
+            <path d="M3 17h2v-7H3v7zm4 0h2v-4H7v4zm4 0h2v-10h-2v10zm4 0h2v-2h-2v2z"/>
+          </svg>
+        </button>
       </div>
       <h1 style={{ margin: '0 0 0 32px' }}>{title}</h1>
       <button onClick={onToggleTheme} className={styles.themeToggle}>🌗</button>
