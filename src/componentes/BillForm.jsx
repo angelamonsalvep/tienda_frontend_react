@@ -8,24 +8,21 @@ const BillForm = ({ form, onChange }) => (
       placeholder="Nombre"
       value={form.firstName}
       onChange={e => onChange({ ...form, firstName: e.target.value })}
+      required
     />
     <input
       type="text"
       placeholder="Apellido"
       value={form.lastName}
       onChange={e => onChange({ ...form, lastName: e.target.value })}
+      required
     />
     <input
-      type="text"
-      placeholder="Dirección"
-      value={form.address}
-      onChange={e => onChange({ ...form, address: e.target.value })}
-    />
-    <input
-      type="text"
-      placeholder="Ciudad"
-      value={form.city}
-      onChange={e => onChange({ ...form, city: e.target.value })}
+      type="email"
+      placeholder="Email"
+      value={form.email || ''}
+      onChange={e => onChange({ ...form, email: e.target.value })}
+      required
     />
   </div>
 );

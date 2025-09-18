@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { procesarPago } from './componentes/procesoCompraService';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Catalog from './paginas/catalog';
 import ConfirmProducts from './paginas/ConfirmProducts';
@@ -15,9 +16,16 @@ function App() {
     document.body.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
-  const handlePay = (paymentData) => {
-    alert('¡Pago realizado!');
-    setCart([]);
+  const handlePay = async (paymentData) => {
+    try {
+      const resp = await procesarPago(paymentData, cart);
+      console.log('Usuario creado:', resp);
+      alert('¡Pago realizado y usuario creado!');
+      setCart([]);
+    } catch (error) {
+      alert('Error al crear usuario');
+      console.error(error);
+    }
   };
   const handleToggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
