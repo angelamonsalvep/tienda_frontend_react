@@ -6,6 +6,7 @@ import ConfirmProducts from './paginas/ConfirmProducts';
 import PaymentFormPage from './paginas/PaymentForm';
 import ProductoCRUD from './paginas/ProductoCRUD';
 import ProductoFormPage from './paginas/ProductoFormPage';
+import LiveDashboard from './paginas/LiveDashboard';
 import './App.css';
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
     };
     return (
       <div className={`app-container${theme === 'dark' ? ' dark' : ''}`}>
-        <Routes>
+  <Routes>
           <Route
             path="/"
             element={
@@ -81,6 +82,10 @@ function App() {
           <Route
             path="/crud-productos/editar/:id"
             element={<ProductoFormPage {...commonProps} />}
+          />
+          <Route
+            path="/dashboard"
+            element={<LiveDashboard {...commonProps} />}
           />
         </Routes>
       </div>
