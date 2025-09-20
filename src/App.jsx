@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { procesarPago } from './componentes/procesoCompraService';
+import { procesarPago } from './services/procesoCompraService';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Catalog from './paginas/catalog';
 import ConfirmProducts from './paginas/ConfirmProducts';
