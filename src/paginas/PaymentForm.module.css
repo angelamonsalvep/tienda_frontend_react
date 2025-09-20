@@ -1,9 +1,0 @@
-/* Estilos para la página de pago */
-.paymentPageContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  background: var(--color-bg);
-  padding-bottom: 3rem;
-}

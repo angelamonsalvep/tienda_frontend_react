@@ -7,7 +7,7 @@ import PaymentFormPage from './paginas/PaymentForm';
 import ProductoCRUD from './paginas/ProductoCRUD';
 import ProductoFormPage from './paginas/ProductoFormPage';
 import LiveDashboard from './paginas/LiveDashboard';
-import './App.css';
+import './estilos/App.css';
 
 function App() {
   const [cart, setCart] = useState([]);
