@@ -94,7 +94,7 @@ body.dark {
 }
 
 :root {
-  --color-bg: #f5f6fa;
+  --color-bg: rgba(227, 242, 253, 0.7);
   --color-text: #222;
   --color-card-bg: #fff;
   --color-card-text: #222;
