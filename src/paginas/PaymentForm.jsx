@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../componentes/header';
 import PaymentForm from '../componentes/PaymentForm';
-import styles from './PaymentForm.module.css';
+import styles from '../estilos/PaymentForm.module.css';
 
 const PaymentFormPage = ({ cart, onPay, onToggleTheme, theme, onCartClick }) => {
 	const totalAmount = cart.reduce((sum, item) => sum + item.precio, 0);

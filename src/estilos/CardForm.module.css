@@ -1,0 +1,28 @@
+/* Estilos para el formulario de tarjeta */
+.cardForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--color-card-bg);
+  color: var(--color-card-text);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.cardForm input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  background: var(--color-card-bg);
+  color: var(--color-card-text);
+  transition: border-color 0.2s;
+}
+
+.cardForm input:focus {
+  border-color: #1976d2;
+}

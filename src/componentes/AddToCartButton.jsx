@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AddToCartButton.module.css';
+import styles from '../estilos/AddToCartButton.module.css';
 
 const AddToCartButton = ({ onClick }) => {
   return (

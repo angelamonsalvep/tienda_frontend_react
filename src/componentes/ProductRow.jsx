@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProductRow.module.css';
+import styles from '../estilos/ProductRow.module.css';
 
 export default function ProductRow({ product, onEdit, onDelete }) {
   return (

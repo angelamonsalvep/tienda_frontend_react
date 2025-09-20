@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './header.module.css';
+import styles from '../estilos/header.module.css';
 
 const Header = ({ title, onToggleTheme, onCartClick, cartCount, theme }) => {
   const navigate = useNavigate();

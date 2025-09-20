@@ -1,7 +1,7 @@
 import React from 'react';
 import Product from './product';
 import AddToCartButton from './AddToCartButton';
-import styles from './CardProduct.module.css';
+import styles from '../estilos/CardProduct.module.css';
 
 const CardProduct = ({ product, onAddToCart }) => {
 	return (

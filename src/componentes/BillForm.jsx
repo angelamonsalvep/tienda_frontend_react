@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './BillForm.module.css';
+import styles from '../estilos/BillForm.module.css';
 
 const BillForm = ({ form, onChange }) => (
   <div className={styles.billForm}>

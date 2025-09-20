@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './PayButton.module.css';
+import styles from '../estilos/PayButton.module.css';
 
 const PayButton = ({ onClick, disabled }) => (
   <button onClick={onClick} disabled={disabled} className={styles.payBtn}>

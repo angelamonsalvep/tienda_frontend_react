@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../componentes/header';
 import Cart from '../componentes/Cart';
-import styles from './ConfirmProducts.module.css';
+import styles from '../estilos/ConfirmProducts.module.css';
 
 const ConfirmProducts = ({ cart, onGoToPay, onToggleTheme }) => {
 	return (

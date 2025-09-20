@@ -1,4 +1,4 @@
-import styles from './product.module.css';
+import styles from '../estilos/product.module.css';
 
 const Product = ({ product }) => {
   return (

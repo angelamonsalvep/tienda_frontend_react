@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../componentes/header';
 import Productos from '../componentes/Productos';
 import ProductTable from '../componentes/ProductTable';
-import styles from './ProductoCRUD.module.css';
+import styles from '../estilos/ProductoCRUD.module.css';
 
 export default function ProductoCRUD({ onToggleTheme, theme, onCartClick }) {
   const navigate = useNavigate();

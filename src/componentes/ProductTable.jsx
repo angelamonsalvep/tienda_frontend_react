@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductRow from './ProductRow';
-import styles from './ProductTable.module.css';
+import styles from '../estilos/ProductTable.module.css';
 
 export default function ProductTable({ products, onEdit, onDelete }) {
   return (

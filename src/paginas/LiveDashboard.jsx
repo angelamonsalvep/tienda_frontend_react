@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getVentasTop, getVentasSerie } from '../services/analiticaService';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, LineChart, Line, CartesianGrid } from 'recharts';
-import styles from './LiveDashboard.module.css';
+import styles from '../estilos/LiveDashboard.module.css';
 import Header from '../componentes/header';
 
 // Este componente será el dashboard para mostrar las gráficas

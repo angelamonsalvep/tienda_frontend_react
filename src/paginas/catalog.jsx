@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../componentes/header';
 import CardProduct from '../componentes/CardProduct';
 import Productos from '../componentes/Productos';
-import styles from './Catalog.module.css';
+import styles from '../estilos/Catalog.module.css';
 
 const Catalog = ({ cart, setCart, onGoToCart, onToggleTheme }) => {
 	const handleAddToCart = (product) => {

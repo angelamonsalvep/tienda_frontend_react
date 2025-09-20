@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from './Usuarios.module.css';
+import styles from '../estilos/Usuarios.module.css';
 
 const API_URL = "http://localhost:5000/usuarios"; // Cambia la URL si tu API corre en otro puerto o ruta
 

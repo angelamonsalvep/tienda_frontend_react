@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CardForm.module.css';
+import styles from '../estilos/CardForm.module.css';
 
 const CardForm = ({ form, onChange }) => (
   <div className={styles.cardForm}>

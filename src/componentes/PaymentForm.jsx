@@ -3,7 +3,7 @@ import PaymentMethodSelector from './PaymentMethodSelector';
 import CardForm from './CardForm';
 import BillForm from './BillForm';
 import PayButton from './PayButton';
-import styles from './PaymentForm.module.css';
+import styles from '../estilos/PaymentForm.module.css';
 
 const PaymentForm = ({ totalAmount, onPay }) => {
   const [method, setMethod] = useState('debito');

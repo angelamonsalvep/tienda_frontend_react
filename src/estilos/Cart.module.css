@@ -1,0 +1,39 @@
+/* Estilos para el carrito de compras */
+.cart {
+  background: var(--color-card-bg);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.cart h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-btn-bg);
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart li {
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+  color: var(--color-card-text);
+}
+
+.cart li:last-child {
+  border-bottom: none;
+}
+
+.cart p {
+  color: var(--color-card-text);
+  font-size: 1rem;
+  text-align: center;
+}

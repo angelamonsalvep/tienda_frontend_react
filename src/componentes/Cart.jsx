@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Cart.module.css';
+import styles from '../estilos/Cart.module.css';
 
 const Cart = ({ cartItems }) => {
   return (

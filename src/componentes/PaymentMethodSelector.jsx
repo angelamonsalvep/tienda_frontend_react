@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './PaymentMethodSelector.module.css';
+import styles from '../estilos/PaymentMethodSelector.module.css';
 
 const PaymentMethodSelector = ({ value, onChange }) => {
   return (
