@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { procesarPago } from './services/procesoCompraService';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import { CartProvider, useCart } from './contexts/CartContext';
 import Catalog from './paginas/catalog';
 import ConfirmProducts from './paginas/ConfirmProducts';
 import PaymentFormPage from './paginas/PaymentForm';
@@ -16,14 +17,12 @@ import Header from './componentes/header';
 import HeaderActions from './componentes/HeaderActions';
 
 function App() {
-  const [cart, setCart] = useState([]);
-
-  const handlePay = async (paymentData) => {
+  const handlePay = async (paymentData, cart, clearCart) => {
     try {
       const resp = await procesarPago(paymentData, cart);
       console.log('Usuario creado:', resp);
       alert('¡Pago realizado y usuario creado!');
-      setCart([]);
+      clearCart();
     } catch (error) {
       alert('Error al crear usuario');
       console.error(error);
@@ -33,6 +32,7 @@ function App() {
   function AppRoutes() {
     const location = useLocation();
     const { theme, toggleTheme } = useTheme();
+    const { cart, clearCart, cartCount } = useCart();
     
     // Map de rutas a títulos
     const headerTitles = {
@@ -55,22 +55,13 @@ function App() {
     return (
       <div className={`app-container${theme === 'dark' ? ' dark' : ''}`}>
         <Header title={headerTitle}>
-          <HeaderActions cartCount={cart.length} />
+          <HeaderActions cartCount={cartCount} />
         </Header>
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/admin" element={<AdminHome />} />
           <Route path="/usuario" element={<UserHome />} />
-          <Route
-            path="/catalogo"
-            element={
-              <Catalog
-                cart={cart}
-                setCart={setCart}
-                onGoToCart={() => {}}
-              />
-            }
-          />
+          <Route path="/catalogo" element={<Catalog />} />
           <Route
             path="/carrito"
             element={
@@ -85,7 +76,7 @@ function App() {
             element={
               <PaymentFormPage
                 cart={cart}
-                onPay={handlePay}
+                onPay={(paymentData) => handlePay(paymentData, cart, clearCart)}
               />
             }
           />
@@ -112,9 +103,11 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Router>
-        <AppRoutes />
-      </Router>
+      <CartProvider>
+        <Router>
+          <AppRoutes />
+        </Router>
+      </CartProvider>
     </ThemeProvider>
   );
 }

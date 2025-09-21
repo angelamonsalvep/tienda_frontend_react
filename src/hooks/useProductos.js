@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export const API_URL = "http://localhost:5000/productos";
+const API_URL = "http://localhost:5000/productos";
 
-function Productos({ children, reload }) {
+export const useProductos = (reload = false) => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,8 +21,5 @@ function Productos({ children, reload }) {
       });
   }, [reload]);
 
-  return children({ productos, loading, error });
-}
-
-// Memoizar el componente para evitar re-renders innecesarios
-export default React.memo(Productos);
+  return { productos, loading, error };
+};
