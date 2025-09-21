@@ -1,0 +1,18 @@
+.inicio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+}
+.opciones {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  margin-top: 2rem;
+  justify-content: center;
+  width: 100%;
+}
