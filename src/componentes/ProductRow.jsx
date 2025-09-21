@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from '../estilos/ProductRow.module.css';
 
-export default function ProductRow({ product, onEdit, onDelete }) {
+function ProductRow({ product, onEdit, onDelete }) {
+  const [imageError, setImageError] = useState(false);
+
+  const handleEdit = useCallback(() => {
+    onEdit(product);
+  }, [onEdit, product]);
+
+  const handleDelete = useCallback(() => {
+    onDelete(product.id_producto);
+  }, [onDelete, product.id_producto]);
+
+  const handleImageError = useCallback(() => {
+    setImageError(true);
+  }, []);
+
+  const shouldShowImage = product.imagen_url && !imageError;
+
   return (
     <tr>
       <td style={{ textAlign: 'center' }}>
-        {product.imagen_url ? (
+        {shouldShowImage ? (
           <img
             src={product.imagen_url}
             alt={product.nombre_producto || product.nombre}
             className={styles.productImage}
-            onError={e => { e.target.onerror = null; e.target.src = '/vite.svg'; }}
+            onError={handleImageError}
           />
         ) : (
-          <img src="/vite.svg" alt="Sin imagen" className={styles.productImageDefault} />
+          <img 
+            src="/vite.svg" 
+            alt="Sin imagen" 
+            className={styles.productImageDefault} 
+          />
         )}
       </td>
       <td>{product.nombre_producto || product.nombre}</td>
@@ -23,7 +43,7 @@ export default function ProductRow({ product, onEdit, onDelete }) {
         <span
           title="Editar"
           className={styles.actionIcon}
-          onClick={() => onEdit(product)}
+          onClick={handleEdit}
         >
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#1976d2">
             <path d="M0 0h24v24H0V0z" fill="none"/>
@@ -33,7 +53,7 @@ export default function ProductRow({ product, onEdit, onDelete }) {
         <span
           title="Eliminar"
           className={styles.actionIcon}
-          onClick={() => onDelete(product.id_producto)}
+          onClick={handleDelete}
         >
           <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#d32f2f">
             <path d="M0 0h24v24H0V0z" fill="none"/>
@@ -44,3 +64,17 @@ export default function ProductRow({ product, onEdit, onDelete }) {
     </tr>
   );
 }
+
+// Función de comparación para React.memo
+const areEqual = (prevProps, nextProps) => {
+  return (
+    prevProps.product.id_producto === nextProps.product.id_producto &&
+    prevProps.product.nombre_producto === nextProps.product.nombre_producto &&
+    prevProps.product.precio === nextProps.product.precio &&
+    prevProps.product.imagen_url === nextProps.product.imagen_url &&
+    prevProps.onEdit === nextProps.onEdit &&
+    prevProps.onDelete === nextProps.onDelete
+  );
+};
+
+export default React.memo(ProductRow, areEqual);

@@ -2,7 +2,7 @@ import React from 'react';
 import ProductRow from './ProductRow';
 import styles from '../estilos/ProductTable.module.css';
 
-export default function ProductTable({ products, onEdit, onDelete }) {
+function ProductTable({ products, onEdit, onDelete }) {
   return (
     <table className={styles.table}>
       <thead>
@@ -17,7 +17,7 @@ export default function ProductTable({ products, onEdit, onDelete }) {
       <tbody>
         {products.map(product => (
           <ProductRow
-            key={product.id}
+            key={product.id_producto || product.id}
             product={product}
             onEdit={onEdit}
             onDelete={onDelete}
@@ -27,3 +27,14 @@ export default function ProductTable({ products, onEdit, onDelete }) {
     </table>
   );
 }
+
+// Función de comparación para evitar re-renders innecesarios
+const areEqual = (prevProps, nextProps) => {
+  return (
+    prevProps.products === nextProps.products &&
+    prevProps.onEdit === nextProps.onEdit &&
+    prevProps.onDelete === nextProps.onDelete
+  );
+};
+
+export default React.memo(ProductTable, areEqual);
