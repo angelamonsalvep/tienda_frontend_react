@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { procesarPago } from './services/procesoCompraService';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import Catalog from './paginas/catalog';
 import ConfirmProducts from './paginas/ConfirmProducts';
 import PaymentFormPage from './paginas/PaymentForm';
@@ -8,14 +9,14 @@ import ProductoCRUD from './paginas/ProductoCRUD';
 import ProductoFormPage from './paginas/ProductoFormPage';
 import LiveDashboard from './paginas/LiveDashboard';
 import './estilos/App.css';
+import Inicio from './paginas/Inicio';
+import AdminHome from './paginas/AdminHome';
+import UserHome from './paginas/UserHome';
+import Header from './componentes/header';
+import HeaderActions from './componentes/HeaderActions';
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    document.body.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
 
   const handlePay = async (paymentData) => {
     try {
@@ -28,36 +29,54 @@ function App() {
       console.error(error);
     }
   };
-  const handleToggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   function AppRoutes() {
-    const navigate = useNavigate();
-    const commonProps = {
-      onToggleTheme: handleToggleTheme,
-      theme,
-      onCartClick: () => navigate('/confirm'),
+    const location = useLocation();
+    const { theme, toggleTheme } = useTheme();
+    
+    // Map de rutas a títulos
+    const headerTitles = {
+      '/': 'MiniTienda',
+      '/admin': 'Panel Administrador',
+      '/usuario': 'Panel Usuario',
+      '/catalogo': 'Catálogo',
+      '/carrito': 'Carrito',
+      '/pay': 'Pago',
+      '/crud-productos': 'CRUD Productos',
+      '/crud-productos/nuevo': 'Nuevo Producto',
+      '/dashboard': 'Dashboard',
     };
+    // Para rutas con parámetros
+    let headerTitle = headerTitles[location.pathname] || 'MiniTienda';
+    if (location.pathname.startsWith('/crud-productos/editar')) {
+      headerTitle = 'Editar Producto';
+    }
+    const navigate = useNavigate();
     return (
       <div className={`app-container${theme === 'dark' ? ' dark' : ''}`}>
-  <Routes>
+        <Header title={headerTitle}>
+          <HeaderActions cartCount={cart.length} />
+        </Header>
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/admin" element={<AdminHome />} />
+          <Route path="/usuario" element={<UserHome />} />
           <Route
-            path="/"
+            path="/catalogo"
             element={
               <Catalog
                 cart={cart}
                 setCart={setCart}
-                onGoToCart={() => navigate('/confirm')}
-                {...commonProps}
+                onGoToCart={() => {}}
               />
             }
           />
           <Route
-            path="/confirm"
+            path="/carrito"
             element={
               <ConfirmProducts
                 cart={cart}
                 onGoToPay={() => navigate('/pay')}
-                {...commonProps}
               />
             }
           />
@@ -67,25 +86,24 @@ function App() {
               <PaymentFormPage
                 cart={cart}
                 onPay={handlePay}
-                {...commonProps}
               />
             }
           />
           <Route
             path="/crud-productos"
-            element={<ProductoCRUD {...commonProps} />}
+            element={<ProductoCRUD />}
           />
           <Route
             path="/crud-productos/nuevo"
-            element={<ProductoFormPage {...commonProps} />}
+            element={<ProductoFormPage />}
           />
           <Route
             path="/crud-productos/editar/:id"
-            element={<ProductoFormPage {...commonProps} />}
+            element={<ProductoFormPage />}
           />
           <Route
             path="/dashboard"
-            element={<LiveDashboard {...commonProps} />}
+            element={<LiveDashboard />}
           />
         </Routes>
       </div>
@@ -93,9 +111,11 @@ function App() {
   }
 
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </ThemeProvider>
   );
 }
 
