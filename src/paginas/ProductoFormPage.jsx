@@ -67,9 +67,9 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
 
   return (
     <>
-      <Header title={isEdit ? 'Editar producto' : 'Agregar producto'} onToggleTheme={onToggleTheme} theme={theme} onCartClick={onCartClick} />
+  {/* El header global ya muestra el título */}
       <div style={{ maxWidth: 500, margin: 'auto', padding: 20 }}>
-        <h2>{isEdit ? 'Editar producto' : 'Agregar producto'}</h2>
+  {/* Título eliminado, ya lo muestra el header global */}
         {loading ? <p>Cargando...</p> : (
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: 12 }}>
