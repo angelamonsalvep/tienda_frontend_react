@@ -3,27 +3,90 @@
 .catalogContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
+  min-height: 0;
   align-items: center;
 }
 
 .catalogMain {
   flex: 1;
   width: 100%;
-  max-width: 900px;
+  max-width: 1300px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 2rem;
+}
+
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  position: relative;
+}
+
+.carouselBtn {
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.carouselBtn:hover {
+  background: #1565c0;
 }
 
 .productList {
   display: flex;
-  flex-wrap: wrap;
+  overflow-x: auto;
   gap: 2rem;
-  justify-content: center;
   width: 100%;
   margin-bottom: 2rem;
+  padding: 2rem 0;
+  scroll-behavior: smooth;
+}
+
+.productList::-webkit-scrollbar {
+  height: 8px;
+}
+
+.productList::-webkit-scrollbar-track {
+  background: var(--color-bg, #f1f1f1);
+  border-radius: 4px;
+}
+
+.productList::-webkit-scrollbar-thumb {
+  background: var(--color-border, #c1c1c1);
+  border-radius: 4px;
+}
+
+.productList::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted, #a8a8a8);
+}
+
+/* Dark mode specific scrollbar styles */
+:global(.dark) .productList::-webkit-scrollbar-track {
+  background: #333;
+}
+
+:global(.dark) .productList::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
+:global(.dark) .productList::-webkit-scrollbar-thumb:hover {
+  background: #777;
 }
 
 .title {
@@ -36,11 +99,14 @@
 .productCard {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 1.5rem;
-  width: 260px;
+  padding: 2rem;
+  min-width: 300px;
+  height: 450px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   transition: box-shadow 0.2s;
   background: var(--color-card-bg);
 }
@@ -50,11 +116,11 @@
 }
 
 .productImage {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 6px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .productName {
