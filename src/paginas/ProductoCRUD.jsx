@@ -18,7 +18,7 @@ export default function ProductoCRUD({ onToggleTheme, theme, onCartClick }) {
 
   return (
     <>
-  <Header title="Gestión de Productos" onToggleTheme={onToggleTheme} theme={theme} onCartClick={onCartClick} />
+  {/* El header global ya muestra el título */}
       <Productos reload={reload}>
         {({ productos, loading, error }) => (
           <div className={styles.crudContainer}>
@@ -40,13 +40,15 @@ export default function ProductoCRUD({ onToggleTheme, theme, onCartClick }) {
             ) : error ? (
               <p className={styles.errorMsg}>{error}</p>
             ) : (
-              <ProductTable
-                products={productos}
-                onEdit={product => {
-                  navigate(`/crud-productos/editar/${product.id_producto}`);
-                }}
-                onDelete={handleDelete}
-              />
+              <div className={styles.tableContainer}>
+                <ProductTable
+                  products={productos}
+                  onEdit={product => {
+                    navigate(`/crud-productos/editar/${product.id_producto}`);
+                  }}
+                  onDelete={handleDelete}
+                />
+              </div>
             )}
           </div>
         )}
