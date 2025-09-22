@@ -233,6 +233,28 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
                 {getImageUrl('principal') && (
                   <div className={styles.imagePreview}>
                     <div className={styles.imagePreviewHeader}>Imagen Principal</div>
+                    <img
+                      src={getImageUrl('principal')}
+                      alt="Vista previa principal"
+                      style={{ display: 'block' }}
+                      onLoad={(e) => {
+                        console.log('✅ Imagen principal cargada correctamente:', getImageUrl('principal'));
+                        e.target.style.display = 'block';
+                        if (e.target.nextSibling) {
+                          e.target.nextSibling.style.display = 'none';
+                        }
+                      }}
+                      onError={(e) => {
+                        console.error('❌ Error cargando imagen principal:', getImageUrl('principal'));
+                        e.target.style.display = 'none';
+                        if (e.target.nextSibling) {
+                          e.target.nextSibling.style.display = 'block';
+                        }
+                      }}
+                    />
+                    <div className={styles.noImageText} style={{ display: 'none' }}>
+                      ❌ No se pudo cargar la imagen principal
+                    </div>
                     <div className={styles.urlDisplay}>
                       <small title={getImageUrl('principal')}>
                         {getImageUrl('principal').length > 50 
@@ -241,28 +263,34 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
                         }
                       </small>
                     </div>
-                    <img
-                      src={getImageUrl('principal')}
-                      alt="Vista previa principal"
-                      onLoad={(e) => {
-                        console.log('Imagen principal cargada correctamente:', getImageUrl('principal'));
-                        e.target.nextSibling.style.display = 'none';
-                      }}
-                      onError={(e) => {
-                        console.error('Error cargando imagen principal:', getImageUrl('principal'));
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'block';
-                      }}
-                    />
-                    <div className={styles.noImageText} style={{ display: 'none' }}>
-                      ❌ No se pudo cargar la imagen principal
-                    </div>
                   </div>
                 )}
 
                 {getImageUrl('zoom') && (
                   <div className={styles.imagePreview}>
                     <div className={styles.imagePreviewHeader}>Imagen Zoom</div>
+                    <img
+                      src={getImageUrl('zoom')}
+                      alt="Vista previa zoom"
+                      style={{ display: 'block' }}
+                      onLoad={(e) => {
+                        console.log('✅ Imagen zoom cargada correctamente:', getImageUrl('zoom'));
+                        e.target.style.display = 'block';
+                        if (e.target.nextSibling) {
+                          e.target.nextSibling.style.display = 'none';
+                        }
+                      }}
+                      onError={(e) => {
+                        console.error('❌ Error cargando imagen zoom:', getImageUrl('zoom'));
+                        e.target.style.display = 'none';
+                        if (e.target.nextSibling) {
+                          e.target.nextSibling.style.display = 'block';
+                        }
+                      }}
+                    />
+                    <div className={styles.noImageText} style={{ display: 'none' }}>
+                      ❌ No se pudo cargar la imagen de zoom
+                    </div>
                     <div className={styles.urlDisplay}>
                       <small title={getImageUrl('zoom')}>
                         {getImageUrl('zoom').length > 50 
@@ -270,22 +298,6 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
                           : getImageUrl('zoom')
                         }
                       </small>
-                    </div>
-                    <img
-                      src={getImageUrl('zoom')}
-                      alt="Vista previa zoom"
-                      onLoad={(e) => {
-                        console.log('Imagen zoom cargada correctamente:', getImageUrl('zoom'));
-                        e.target.nextSibling.style.display = 'none';
-                      }}
-                      onError={(e) => {
-                        console.error('Error cargando imagen zoom:', getImageUrl('zoom'));
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'block';
-                      }}
-                    />
-                    <div className={styles.noImageText} style={{ display: 'none' }}>
-                      ❌ No se pudo cargar la imagen de zoom
                     </div>
                   </div>
                 )}
