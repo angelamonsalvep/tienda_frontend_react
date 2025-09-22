@@ -2,15 +2,17 @@
 .billForm {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  gap: 0.75rem;
   background: var(--background-light);
   border: 2px solid var(--border-color);
   border-radius: 8px;
-  padding: 0.75rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .billForm input {
-  padding: 0.625rem 0.75rem;
+  padding: 0.75rem;
   border: 2px solid var(--border-color);
   border-radius: 6px;
   font-size: 0.9rem;
@@ -19,6 +21,9 @@
   background: var(--color-card-bg);
   color: var(--color-card-text);
   transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .billForm input:focus {
@@ -40,6 +45,61 @@
   grid-column: 1 / -1;
 }
 
+/* Contenedor del email con validación */
+.emailContainer {
+  grid-column: 1 / -1;
+  position: relative;
+  width: 100%;
+}
+
+.emailContainer input {
+  width: 100% !important;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Estados de validación */
+.invalid {
+  border-color: #f44336 !important;
+  background-color: #fff5f5 !important;
+}
+
+.invalid:focus {
+  border-color: #f44336 !important;
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1) !important;
+}
+
+.valid {
+  border-color: #4caf50 !important;
+  background-color: #f1f8e9 !important;
+}
+
+.valid:focus {
+  border-color: #4caf50 !important;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1) !important;
+}
+
+/* Mensajes de validación */
+.errorMessage {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.successMessage {
+  color: #4caf50;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .billForm {
@@ -47,7 +107,7 @@
     padding: 1rem;
   }
   
-  .fullWidth {
+  .fullWidth, .emailContainer {
     grid-column: 1;
   }
 }

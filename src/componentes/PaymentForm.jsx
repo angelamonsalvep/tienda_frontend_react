@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PaymentMethodSelector from './PaymentMethodSelector';
 import CardForm from './CardForm';
 import BillForm from './BillForm';
@@ -11,6 +11,31 @@ const PaymentForm = ({ totalAmount, onPay }) => {
   const [billForm, setBillForm] = useState({ firstName: '', lastName: '', email: '' });
 
   const showCardForm = method === 'debito' || method === 'credito';
+
+  // Validación de formularios
+  const isFormValid = useMemo(() => {
+    // Validar información de facturación (siempre requerida)
+    const isBillFormValid = billForm.firstName.trim() !== '' && 
+                           billForm.lastName.trim() !== '' && 
+                           billForm.email.trim() !== '' &&
+                           /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(billForm.email.trim());
+
+    // Validar formulario de tarjeta (solo si se requiere)
+    const isCardFormValid = !showCardForm || (
+      cardForm.ownerName.trim() !== '' &&
+      cardForm.cardNumber.replace(/\s/g, '').length === 16 &&
+      cardForm.expirationMonth.length === 2 &&
+      parseInt(cardForm.expirationMonth) >= 1 &&
+      parseInt(cardForm.expirationMonth) <= 12 &&
+      cardForm.expirationYear.length === 4 &&
+      parseInt(cardForm.expirationYear) >= new Date().getFullYear() &&
+      (parseInt(cardForm.expirationYear) > new Date().getFullYear() || 
+       parseInt(cardForm.expirationMonth) > new Date().getMonth() + 1) &&
+      cardForm.cvv.length >= 3 && cardForm.cvv.length <= 4
+    );
+
+    return isBillFormValid && isCardFormValid;
+  }, [billForm, cardForm, showCardForm]);
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('es-CO', {
@@ -62,7 +87,10 @@ const PaymentForm = ({ totalAmount, onPay }) => {
           </div>
 
           <div className={styles.paymentFooter}>
-            <PayButton onClick={() => onPay({ method, cardForm, billForm })} disabled={false} />
+            <PayButton 
+              onClick={() => onPay({ method, cardForm, billForm })} 
+              disabled={!isFormValid} 
+            />
             <p className={styles.securityNote}>
               <span>🔐</span>
               Tu información está protegida con encriptación SSL

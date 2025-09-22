@@ -20,12 +20,19 @@ function App() {
   const handlePay = async (paymentData, cart, clearCart) => {
     try {
       const resp = await procesarPago(paymentData, cart);
-      console.log('Usuario creado:', resp);
-      alert('¡Pago realizado y usuario creado!');
+      
+      // Mensaje personalizado según si el usuario ya existía
+      if (resp.usuario.usuario_existente) {
+        alert('¡Pago realizado exitosamente!\n\nEl usuario ya existía en el sistema, pero tu pedido ha sido procesado correctamente.');
+      } else {
+        alert('¡Pago realizado y usuario creado exitosamente!');
+      }
+      
+      console.log('Proceso completado:', resp);
       clearCart();
     } catch (error) {
-      alert('Error al crear usuario');
-      console.error(error);
+      console.error('Error en el proceso de pago:', error);
+      alert('Error al procesar el pago. Por favor, inténtalo de nuevo.');
     }
   };
 
