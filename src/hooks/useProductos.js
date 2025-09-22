@@ -23,6 +23,31 @@ const cleanImageUrl = (url) => {
   }
 };
 
+// Función para limpiar el array de imágenes
+const cleanImageArray = (imageData) => {
+  if (!imageData) return null;
+  
+  // Si es un string (formato anterior), convertirlo al nuevo formato
+  if (typeof imageData === 'string') {
+    const cleanedUrl = cleanImageUrl(imageData);
+    return cleanedUrl ? [{ tipo: 'principal', url: cleanedUrl }] : null;
+  }
+  
+  // Si es un array (nuevo formato), limpiar cada imagen
+  if (Array.isArray(imageData)) {
+    const cleanedImages = imageData
+      .map(img => ({
+        ...img,
+        url: cleanImageUrl(img.url)
+      }))
+      .filter(img => img.url !== null);
+    
+    return cleanedImages.length > 0 ? cleanedImages : null;
+  }
+  
+  return null;
+};
+
 export const useProductos = (reload = false) => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +61,7 @@ export const useProductos = (reload = false) => {
         // Limpiar las URLs de imágenes problemáticas
         const productosLimpios = data.productos.map(producto => ({
           ...producto,
-          imagen_url: cleanImageUrl(producto.imagen_url)
+          imagen_url: cleanImageArray(producto.imagen_url)
         }));
         
         setProductos(productosLimpios);

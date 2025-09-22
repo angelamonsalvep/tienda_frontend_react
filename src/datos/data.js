@@ -2,14 +2,20 @@ export const productList = [
   {
     id: 1,
     nombre: 'Camiseta básica blanca',
-  imagen: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80',
+    imagen: [
+      { tipo: 'principal', url: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80' },
+      { tipo: 'zoom', url: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=90' }
+    ],
     descripcion: 'Camiseta de algodón 100% para uso diario, corte clásico.',
     precio: 32000
   },
   {
     id: 2,
     nombre: 'Jeans azul clásico',
-  imagen: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80',
+    imagen: [
+      { tipo: 'principal', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80' },
+      { tipo: 'zoom', url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=90' }
+    ],
     descripcion: 'Pantalón vaquero azul, ajuste regular, ideal para cualquier ocasión.',
     precio: 85000
   },
@@ -37,7 +43,10 @@ export const productList = [
   {
     id: 6,
     nombre: 'Zapatos deportivos negros',
-  imagen: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80',
+    imagen: [
+      { tipo: 'principal', url: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80' },
+      { tipo: 'zoom', url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=90' }
+    ],
     descripcion: 'Calzado deportivo cómodo y ligero para uso diario.',
     precio: 115000
   },
