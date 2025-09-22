@@ -4,6 +4,8 @@ import { useProductos } from '../hooks/useProductos';
 import ProductTable from '../componentes/ProductTable';
 import styles from '../estilos/ProductoCRUD.module.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
 export default function ProductoCRUD() {
   const navigate = useNavigate();
   const [reload, setReload] = useState(false);
@@ -12,7 +14,7 @@ export default function ProductoCRUD() {
   // Eliminar producto
   const handleDelete = useCallback(async (id) => {
     try {
-      await fetch(`http://localhost:5000/productos/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/productos/${id}`, { method: 'DELETE' });
       setReload(r => !r);
     } catch (error) {
       console.error('Error al eliminar producto:', error);

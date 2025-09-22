@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from '../estilos/Usuarios.module.css';
 
-const API_URL = "http://localhost:5000/usuarios"; // Cambia la URL si tu API corre en otro puerto o ruta
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const API_URL = `${API_BASE_URL}/usuarios`;
 
 function Usuarios() {
   const [usuarios, setUsuarios] = useState([]);
