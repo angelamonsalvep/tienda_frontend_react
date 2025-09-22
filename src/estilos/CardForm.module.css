@@ -17,22 +17,76 @@
   font-weight: 500;
   outline: none;
   background: var(--color-card-bg);
-  color: var(--color-card-text);
+  color: var(--color-card-text) !important;
   transition: all 0.3s ease;
 }
 
-.cardForm input:focus {
+.input {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  outline: none;
+  background: var(--color-card-bg);
+  color: var(--color-card-text) !important;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Contenedor para inputs con validación */
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+
+/* Estados de validación */
+.invalid {
+  border-color: #f44336 !important;
+  background-color: var(--error-bg-color, #fff5f5) !important;
+  color: var(--color-card-text) !important;
+}
+
+.invalid:focus {
+  border-color: #f44336 !important;
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1) !important;
+}
+
+.valid {
+  border-color: #4caf50 !important;
+  background-color: var(--success-bg-color, #f1f8e9) !important;
+  color: var(--color-card-text) !important;
+}
+
+.valid:focus {
+  border-color: #4caf50 !important;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1) !important;
+}
+
+/* Mensajes de error */
+.errorMessage {
+  color: #f44336;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.cardForm input:focus, .input:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
   transform: translateY(-1px);
 }
 
-.cardForm input:hover {
+.cardForm input:hover, .input:hover {
   border-color: var(--primary-color);
 }
 
-.cardForm input::placeholder {
-  color: var(--color-card-text);
+.cardForm input::placeholder, .input::placeholder {
+  color: var(--color-card-text) !important;
   opacity: 0.6;
 }
 
