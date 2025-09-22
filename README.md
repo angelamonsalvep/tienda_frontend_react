@@ -9,7 +9,7 @@ La aplicación consume un backend en Flask y permite la visualización de produc
 
 El frontend está desplegado en **Vercel** y puedes accederlo en la siguiente URL:  
 
-👉 [MiniTienda en Producción](https://tienda-frontend-react-kq60v50m5-angela-monsalves-projects.vercel.app/)
+👉 [MiniTienda en Producción](https://tienda-frontend-react-git-main-angela-monsalves-projects.vercel.app/)
 
 ---
 
