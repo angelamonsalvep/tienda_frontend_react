@@ -10,11 +10,11 @@ const Catalog = () => {
 	const { addToCart } = useCart();
 
 	const scrollLeft = useCallback(() => {
-		scrollRef.current?.scrollBy({ left: -280, behavior: 'smooth' });
+		scrollRef.current?.scrollBy({ left: -290, behavior: 'smooth' });
 	}, []);
 
 	const scrollRight = useCallback(() => {
-		scrollRef.current?.scrollBy({ left: 280, behavior: 'smooth' });
+		scrollRef.current?.scrollBy({ left: 290, behavior: 'smooth' });
 	}, []);
 
 	return (

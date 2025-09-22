@@ -11,12 +11,15 @@
 .catalogMain {
   flex: 1;
   width: 100%;
-  max-width: 1300px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0;
+  height: auto;
+  justify-content: center;
+  min-height: auto;
 }
 
 .carouselContainer {
@@ -24,7 +27,11 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
+  height: auto;
   position: relative;
+  max-height: none;
+  max-width: 100%;
+  padding: 1rem 0;
 }
 
 .carouselBtn {
@@ -32,16 +39,17 @@
   color: white;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 2rem;
-  transition: background 0.2s;
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
   flex-shrink: 0;
   z-index: 1;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
 }
 
 .carouselBtn:hover {
@@ -51,29 +59,36 @@
 .productList {
   display: flex;
   overflow-x: auto;
-  gap: 2rem;
+  overflow-y: hidden;
+  gap: 1.5rem;
   width: 100%;
-  margin-bottom: 2rem;
-  padding: 2rem 0;
+  height: auto;
+  padding: 0.5rem;
   scroll-behavior: smooth;
+  align-items: center;
+  justify-content: flex-start;
+  scrollbar-width: thin;
+  scrollbar-color: #1976d2 #f0f0f0;
 }
 
 .productList::-webkit-scrollbar {
   height: 8px;
+  display: block;
 }
 
 .productList::-webkit-scrollbar-track {
-  background: var(--color-bg, #f1f1f1);
+  background: #f0f0f0;
   border-radius: 4px;
 }
 
 .productList::-webkit-scrollbar-thumb {
-  background: var(--color-border, #c1c1c1);
+  background: #1976d2;
   border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
 .productList::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted, #a8a8a8);
+  background: #1565c0;
 }
 
 /* Dark mode specific scrollbar styles */
@@ -87,6 +102,56 @@
 
 :global(.dark) .productList::-webkit-scrollbar-thumb:hover {
   background: #777;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .catalogMain {
+    height: calc(100vh - 100px);
+  }
+  
+  .carouselContainer {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .catalogMain {
+    padding: 0.8rem;
+    height: calc(100vh - 80px);
+  }
+  
+  .carouselContainer {
+    max-height: 380px;
+  }
+  
+  .productList {
+    gap: 1.2rem;
+    padding: 1.2rem 0.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalogMain {
+    padding: 0.5rem;
+    height: calc(100vh - 60px);
+  }
+  
+  .carouselContainer {
+    gap: 0.8rem;
+    max-height: 360px;
+  }
+  
+  .carouselBtn {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+  }
+  
+  .productList {
+    gap: 1rem;
+    padding: 1rem 0.2rem;
+  }
 }
 
 .title {
