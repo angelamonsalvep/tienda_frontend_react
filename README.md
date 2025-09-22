@@ -1,12 +1,39 @@
-# React + Vite
+# 🛍️ MiniTienda - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es el frontend de **MiniTienda**, desarrollado con **React + Vite**.  
+La aplicación consume un backend en Flask y permite la visualización de productos de la tienda.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Despliegue en Producción
 
-## Expanding the ESLint configuration
+El frontend está desplegado en **Vercel** y puedes accederlo en la siguiente URL:  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👉 [MiniTienda en Producción](https://tienda-frontend-react-kq60v50m5-angela-monsalves-projects.vercel.app/)
+
+---
+
+## ⚙️ Tecnologías utilizadas
+
+- [React](https://react.dev/) + [Vite](https://vitejs.dev/)  
+- [Vercel](https://vercel.com/) para el despliegue  
+- [Node.js](https://nodejs.org/) v18+ recomendado  
+
+---
+
+## 📦 Instalación en local
+
+Si deseas correrlo en tu máquina:
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/angelamonsalvep/tienda_frontend_react.git
+
+# Entrar al proyecto
+cd tienda_frontend_react
+
+# Instalar dependencias
+npm install
+
+# Levantar el servidor de desarrollo
+npm run dev
