@@ -81,7 +81,7 @@ html, body {
 }
 
 #root {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -91,10 +91,9 @@ html, body {
 }
 
 .app-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .app-container > main,
@@ -102,7 +101,6 @@ html, body {
 .paymentPageContainer,
 .confirmContainer {
   flex: 1;
-  overflow-y: auto;
   min-height: 0;
 }
 
