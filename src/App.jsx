@@ -9,6 +9,7 @@ import PaymentFormPage from './paginas/PaymentForm';
 import ProductoCRUD from './paginas/ProductoCRUD';
 import ProductoFormPage from './paginas/ProductoFormPage';
 import LiveDashboard from './paginas/LiveDashboard';
+import PaymentSuccessModal from './componentes/PaymentSuccessModal';
 import './estilos/App.css';
 import Inicio from './paginas/Inicio';
 import AdminHome from './paginas/AdminHome';
@@ -17,23 +18,58 @@ import Header from './componentes/header';
 import HeaderActions from './componentes/HeaderActions';
 
 function App() {
+  const [paymentModal, setPaymentModal] = useState({
+    isOpen: false,
+    info: null
+  });
+
   const handlePay = async (paymentData, cart, clearCart) => {
     try {
       const resp = await procesarPago(paymentData, cart);
       
-      // Mensaje personalizado según si el usuario ya existía
-      if (resp.usuario.usuario_existente) {
-        alert('¡Pago realizado exitosamente!\n\nEl usuario ya existía en el sistema, pero tu pedido ha sido procesado correctamente.');
-      } else {
-        alert('¡Pago realizado y usuario creado exitosamente!');
-      }
+      // Calcular el total del carrito
+      const totalAmount = cart.reduce((sum, item) => sum + item.precio, 0);
+      
+      // Configurar información del modal
+      const modalInfo = {
+        success: true,
+        userAlreadyExists: resp.usuario.usuario_existente,
+        userMessage: resp.usuario.usuario_existente 
+          ? 'El usuario ya existía en el sistema, pero tu pedido ha sido procesado correctamente.'
+          : 'Usuario creado exitosamente.',
+        paymentMessage: 'Tu pedido ha sido procesado correctamente.',
+        totalAmount: totalAmount
+      };
+      
+      setPaymentModal({
+        isOpen: true,
+        info: modalInfo
+      });
       
       console.log('Proceso completado:', resp);
       clearCart();
     } catch (error) {
       console.error('Error en el proceso de pago:', error);
-      alert('Error al procesar el pago. Por favor, inténtalo de nuevo.');
+      
+      // Mostrar modal de error
+      const modalInfo = {
+        success: false,
+        paymentMessage: 'Error al procesar el pago. Por favor, inténtalo de nuevo.',
+        totalAmount: 0
+      };
+      
+      setPaymentModal({
+        isOpen: true,
+        info: modalInfo
+      });
     }
+  };
+
+  const closePaymentModal = () => {
+    setPaymentModal({
+      isOpen: false,
+      info: null
+    });
   };
 
   function AppRoutes() {
@@ -113,6 +149,11 @@ function App() {
       <CartProvider>
         <Router>
           <AppRoutes />
+          <PaymentSuccessModal 
+            isOpen={paymentModal.isOpen}
+            onClose={closePaymentModal}
+            paymentInfo={paymentModal.info}
+          />
         </Router>
       </CartProvider>
     </ThemeProvider>

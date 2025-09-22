@@ -75,10 +75,8 @@ export async function procesarPago(paymentData, cart) {
             }
           }
           
-          // Mostrar notificación al usuario
-          if (typeof window !== 'undefined') {
-            alert(respUsuario.mensaje);
-          }
+          // Ya no mostrar alerta aquí, se manejará en el modal
+          console.log('Usuario existente:', respUsuario.mensaje);
           
         } catch (searchError) {
           throw new Error(`Error al buscar usuario existente: ${searchError.message}`);

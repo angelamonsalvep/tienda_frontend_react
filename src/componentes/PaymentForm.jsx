@@ -5,7 +5,7 @@ import BillForm from './BillForm';
 import PayButton from './PayButton';
 import styles from '../estilos/PaymentForm.module.css';
 
-const PaymentForm = ({ totalAmount, onPay }) => {
+const PaymentForm = ({ totalAmount, cart, onPay }) => {
   const [method, setMethod] = useState('pse');
   const [cardForm, setCardForm] = useState({ ownerName: '', cardNumber: '', expirationMonth: '', expirationYear: '', cvv: '' });
   const [billForm, setBillForm] = useState({ firstName: '', lastName: '', email: '' });
@@ -14,6 +14,9 @@ const PaymentForm = ({ totalAmount, onPay }) => {
 
   // Validación de formularios
   const isFormValid = useMemo(() => {
+    // Validar que el carrito no esté vacío
+    const isCartValid = cart && cart.length > 0;
+    
     // Validar información de facturación (siempre requerida)
     const isBillFormValid = billForm.firstName.trim() !== '' && 
                            billForm.lastName.trim() !== '' && 
@@ -34,8 +37,8 @@ const PaymentForm = ({ totalAmount, onPay }) => {
       cardForm.cvv.length >= 3 && cardForm.cvv.length <= 4
     );
 
-    return isBillFormValid && isCardFormValid;
-  }, [billForm, cardForm, showCardForm]);
+    return isCartValid && isBillFormValid && isCardFormValid;
+  }, [cart, billForm, cardForm, showCardForm]);
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('es-CO', {
@@ -85,6 +88,13 @@ const PaymentForm = ({ totalAmount, onPay }) => {
           <div className={styles.totalAmount}>
             Total a Pagar: {formatCurrency(totalAmount)}
           </div>
+          
+          {(!cart || cart.length === 0) && (
+            <div className={styles.emptyCartMessage}>
+              <span>🛒</span>
+              Tu carrito está vacío. Agrega productos antes de continuar.
+            </div>
+          )}
 
           <div className={styles.paymentFooter}>
             <PayButton 
