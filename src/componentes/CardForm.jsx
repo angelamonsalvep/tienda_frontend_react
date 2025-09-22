@@ -8,31 +8,57 @@ const CardForm = ({ form, onChange }) => (
       placeholder="Nombre del titular"
       value={form.ownerName}
       onChange={e => onChange({ ...form, ownerName: e.target.value })}
+      maxLength="50"
     />
     <input
       type="text"
-      placeholder="Número de tarjeta"
+      placeholder="Número de tarjeta (16 dígitos)"
       value={form.cardNumber}
-      onChange={e => onChange({ ...form, cardNumber: e.target.value })}
+      onChange={e => {
+        const value = e.target.value.replace(/\D/g, '');
+        const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+        onChange({ ...form, cardNumber: formattedValue });
+      }}
+      maxLength="19"
     />
-    <input
-      type="text"
-      placeholder="Mes de expiración"
-      value={form.expirationMonth}
-      onChange={e => onChange({ ...form, expirationMonth: e.target.value })}
-    />
-    <input
-      type="text"
-      placeholder="Año de expiración"
-      value={form.expirationYear}
-      onChange={e => onChange({ ...form, expirationYear: e.target.value })}
-    />
-    <input
-      type="text"
-      placeholder="CVV"
-      value={form.cvv}
-      onChange={e => onChange({ ...form, cvv: e.target.value })}
-    />
+    <div className={styles.dateRow}>
+      <input
+        type="text"
+        placeholder="MM"
+        value={form.expirationMonth}
+        onChange={e => {
+          const value = e.target.value.replace(/\D/g, '');
+          if (value.length <= 2) {
+            onChange({ ...form, expirationMonth: value });
+          }
+        }}
+        maxLength="2"
+      />
+      <input
+        type="text"
+        placeholder="YYYY"
+        value={form.expirationYear}
+        onChange={e => {
+          const value = e.target.value.replace(/\D/g, '');
+          if (value.length <= 4) {
+            onChange({ ...form, expirationYear: value });
+          }
+        }}
+        maxLength="4"
+      />
+      <input
+        type="text"
+        placeholder="CVV"
+        value={form.cvv}
+        onChange={e => {
+          const value = e.target.value.replace(/\D/g, '');
+          if (value.length <= 4) {
+            onChange({ ...form, cvv: value });
+          }
+        }}
+        maxLength="4"
+      />
+    </div>
   </div>
 );
 

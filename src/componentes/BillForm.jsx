@@ -19,9 +19,10 @@ const BillForm = ({ form, onChange }) => (
     />
     <input
       type="email"
-      placeholder="Email"
+      placeholder="Correo electrónico"
       value={form.email || ''}
       onChange={e => onChange({ ...form, email: e.target.value })}
+      className={styles.fullWidth}
       required
     />
   </div>

@@ -5,5 +5,148 @@
   align-items: center;
   min-height: 100vh;
   background: var(--color-bg);
-  padding-bottom: 3rem;
+  padding: 0.5rem 1rem 1rem;
+}
+
+.paymentForm {
+  background: var(--color-card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.formContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: sticky;
+  top: 0.5rem;
+}
+
+.paymentHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.paymentTitle {
+  color: var(--color-card-text);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+}
+
+.paymentSubtitle {
+  color: var(--color-card-text);
+  opacity: 0.7;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.formSection {
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  color: var(--color-card-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sectionIcon {
+  font-size: 0.9rem;
+}
+
+.totalAmount {
+  background: var(--background-light);
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.paymentFooter {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.securityNote {
+  color: var(--color-card-text);
+  opacity: 0.6;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+/* Layout especial para PSE (single column) */
+.singleColumn {
+  grid-template-columns: 1fr;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.singleColumn .rightColumn {
+  position: static;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .paymentPageContainer {
+    padding: 1rem 0.5rem 2rem;
+  }
+
+  .paymentForm {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .formContent {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .rightColumn {
+    position: static;
+  }
+
+  .paymentTitle {
+    font-size: 1.5rem;
+  }
+
+  .totalAmount {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
 }
