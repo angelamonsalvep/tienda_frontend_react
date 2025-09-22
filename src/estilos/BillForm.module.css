@@ -19,7 +19,7 @@
   font-weight: 500;
   outline: none;
   background: var(--color-card-bg);
-  color: var(--color-card-text);
+  color: var(--color-card-text) !important;
   transition: all 0.3s ease;
   width: 100%;
   box-sizing: border-box;
@@ -37,7 +37,7 @@
 }
 
 .billForm input::placeholder {
-  color: var(--color-card-text);
+  color: var(--color-card-text) !important;
   opacity: 0.6;
 }
 
@@ -61,7 +61,8 @@
 /* Estados de validación */
 .invalid {
   border-color: #f44336 !important;
-  background-color: #fff5f5 !important;
+  background-color: var(--error-bg-color, #fff5f5) !important;
+  color: var(--color-card-text) !important;
 }
 
 .invalid:focus {
@@ -71,7 +72,8 @@
 
 .valid {
   border-color: #4caf50 !important;
-  background-color: #f1f8e9 !important;
+  background-color: var(--success-bg-color, #f1f8e9) !important;
+  color: var(--color-card-text) !important;
 }
 
 .valid:focus {
