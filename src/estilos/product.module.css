@@ -1,0 +1,160 @@
+/* Estilos para la tarjeta individual de producto */
+.productCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 0.5rem;
+  width: 280px;
+  height: 360px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.productCard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* Contenedor de imagen con hover */
+.imageContainer {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+.productCard img,
+.principalImage,
+.zoomImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.zoomImage {
+  transform: scale(1.05);
+}
+
+.defaultImage {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .productCard {
+    width: 280px;
+    height: 360px;
+    padding: 0.9rem;
+  }
+  
+  .imageContainer {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .productCard {
+    width: 260px;
+    height: 340px;
+    padding: 0.8rem;
+  }
+  
+  .imageContainer {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .productCard h2 {
+    font-size: 0.95rem;
+    height: 1.8rem;
+  }
+  
+  .productCard p {
+    font-size: 0.8rem;
+    height: 1.2rem;
+  }
+  
+  .productCard p:last-of-type {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .productCard {
+    width: 220px;
+    height: 320px;
+    padding: 0.7rem;
+  }
+  
+  .imageContainer {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 0.6rem;
+  }
+  
+  .productCard h2 {
+    font-size: 0.9rem;
+    height: 1.6rem;
+    margin-bottom: 0.15rem;
+  }
+  
+  .productCard p {
+    font-size: 0.75rem;
+    height: 1rem;
+    margin-bottom: 0.1rem;
+  }
+  
+  .productCard p:last-of-type {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
+.productCard h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+  text-align: center;
+  color: var(--color-card-text);
+  line-height: 1.1;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productCard p {
+  font-size: 0.8rem;
+  color: var(--color-card-text);
+  margin-bottom: 0.05rem;
+  text-align: center;
+  line-height: 1.1;
+  opacity: 0.8;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo especial para el precio */
+.productCard p:last-of-type {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-color, #1976d2);
+  opacity: 1;
+  margin-bottom: 0.3rem;
+  height: 1.4rem;
+}

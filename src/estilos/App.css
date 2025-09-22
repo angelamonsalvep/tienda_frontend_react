@@ -1,0 +1,141 @@
+/* CSS Variables */
+:root {
+  --color-bg: rgba(227, 242, 253, 0.7);
+  --color-text: #222;
+  --color-card-bg: #fff;
+  --color-card-text: #222;
+  --color-btn-bg: #1976d2;
+  --color-btn-text: #fff;
+  --color-price: #2e7d32;
+  
+  /* Additional theme variables */
+  --border-color: #e0e0e0;
+  --background-light: #f8f9fa;
+  --primary-color: #1976d2;
+  --primary-hover: #1565c0;
+  --text-primary: #333;
+  --error-bg-color: #fff5f5;
+  --success-bg-color: #f1f8e9;
+}
+
+body.dark {
+  --color-bg: #181a20;
+  --color-text: #eaeaea;
+  --color-card-bg: #23272f;
+  --color-card-text: #ffffff;
+  --color-btn-bg: #388e3c;
+  --color-btn-text: #fff;
+  --color-price: #4fd44f;
+  
+  /* Additional theme variables for dark mode */
+  --border-color: #4a5568;
+  --background-light: #2d3748;
+  --primary-color: #64b5f6;
+  --primary-hover: #42a5f5;
+  --text-primary: #f7fafc;
+  --error-bg-color: #4a2c2a;
+  --success-bg-color: #2d4a2d;
+  
+  background: #181a20 !important;
+  color: #060606 !important;
+}
+
+/* Dark mode styles */
+.dark .catalogContainer {
+  background: #181a20;
+}
+
+.dark .productCard {
+  background: #23272f !important;
+  color: #eaeaea !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.30) !important;
+}
+
+.dark .productCard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.40) !important;
+}
+
+.dark .productPrice {
+  color: #4fd44f !important;
+}
+
+.dark .addToCartBtn {
+  background: #388e3c !important;
+  color: #fff !important;
+}
+
+.dark .addToCartBtn:hover {
+  background: #2e7d32 !important;
+}
+
+/* Base styles for consistent page height */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container > main,
+.catalogContainer,
+.paymentPageContainer,
+.confirmContainer {
+  flex: 1;
+  min-height: 0;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

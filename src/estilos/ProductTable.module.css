@@ -1,0 +1,26 @@
+/* Estilos para la tabla de productos en el CRUD */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-card-bg);
+  color: var(--color-card-text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  padding: 10px 8px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.table th {
+  background: #1976d2;
+  color: #fff;
+  font-weight: 600;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
