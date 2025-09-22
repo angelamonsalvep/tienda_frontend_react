@@ -8,26 +8,50 @@ const BillForm = ({ form, onChange }) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   };
 
+  // Validar campos de texto
+  const isFieldValid = (value) => {
+    if (!value) return null; // No mostrar error si está vacío inicialmente
+    return value.trim() !== '';
+  };
+
   const emailValidation = isEmailValid(form.email);
+  const firstNameValidation = isFieldValid(form.firstName);
+  const lastNameValidation = isFieldValid(form.lastName);
 
   return (
     <div className={styles.billForm}>
-      <input
-        type="text"
-        placeholder="Nombre"
-        value={form.firstName}
-        onChange={e => onChange({ ...form, firstName: e.target.value })}
-        className={!form.firstName.trim() && form.firstName !== '' ? styles.invalid : ''}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Apellido"
-        value={form.lastName}
-        onChange={e => onChange({ ...form, lastName: e.target.value })}
-        className={!form.lastName.trim() && form.lastName !== '' ? styles.invalid : ''}
-        required
-      />
+      <div className={styles.inputContainer}>
+        <input
+          type="text"
+          placeholder="Nombre"
+          value={form.firstName}
+          onChange={e => onChange({ ...form, firstName: e.target.value })}
+          className={firstNameValidation === false ? styles.invalid : firstNameValidation === true ? styles.valid : ''}
+          required
+        />
+        {firstNameValidation === false && (
+          <div className={styles.errorMessage}>
+            ⚠️ El nombre es requerido
+          </div>
+        )}
+      </div>
+
+      <div className={styles.inputContainer}>
+        <input
+          type="text"
+          placeholder="Apellido"
+          value={form.lastName}
+          onChange={e => onChange({ ...form, lastName: e.target.value })}
+          className={lastNameValidation === false ? styles.invalid : lastNameValidation === true ? styles.valid : ''}
+          required
+        />
+        {lastNameValidation === false && (
+          <div className={styles.errorMessage}>
+            ⚠️ El apellido es requerido
+          </div>
+        )}
+      </div>
+
       <div className={styles.emailContainer}>
         <input
           type="email"

@@ -45,6 +45,12 @@
   grid-column: 1 / -1;
 }
 
+/* Contenedor para inputs con validación */
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+
 /* Contenedor del email con validación */
 .emailContainer {
   grid-column: 1 / -1;
@@ -109,7 +115,7 @@
     padding: 1rem;
   }
   
-  .fullWidth, .emailContainer {
+  .fullWidth, .emailContainer, .inputContainer {
     grid-column: 1;
   }
 }
