@@ -45,15 +45,19 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
   };
 
   const handleImageChange = (tipo, url) => {
+    console.log(`Cambiando imagen ${tipo}:`, url);
     const newImagenUrl = form.imagen_url.map(img => 
       img.tipo === tipo ? { ...img, url } : img
     );
+    console.log('Nueva estructura imagen_url:', newImagenUrl);
     setForm({ ...form, imagen_url: newImagenUrl });
   };
 
   const getImageUrl = (tipo) => {
     const imagen = form.imagen_url.find(img => img.tipo === tipo);
-    return imagen ? imagen.url : '';
+    const result = imagen ? imagen.url : '';
+    console.log(`getImageUrl(${tipo}):`, result);
+    return result;
   };
 
   const handleSubmit = async (e) => {
@@ -196,7 +200,8 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
                     value={getImageUrl('principal')}
                     onChange={(e) => handleImageChange('principal', e.target.value)}
                     placeholder="https://ejemplo.com/imagen-principal.jpg"
-                    maxLength={500}
+                    maxLength={1000}
+                    title={getImageUrl('principal')}
                     required
                   />
                   <div className={styles.fieldHelper}>
@@ -215,7 +220,8 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
                     value={getImageUrl('zoom')}
                     onChange={(e) => handleImageChange('zoom', e.target.value)}
                     placeholder="https://ejemplo.com/imagen-zoom.jpg"
-                    maxLength={500}
+                    maxLength={1000}
+                    title={getImageUrl('zoom')}
                   />
                   <div className={styles.fieldHelper}>
                     Imagen que se muestra al pasar el mouse sobre el producto.
@@ -227,10 +233,23 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
                 {getImageUrl('principal') && (
                   <div className={styles.imagePreview}>
                     <div className={styles.imagePreviewHeader}>Imagen Principal</div>
+                    <div className={styles.urlDisplay}>
+                      <small title={getImageUrl('principal')}>
+                        {getImageUrl('principal').length > 50 
+                          ? `${getImageUrl('principal').substring(0, 50)}...` 
+                          : getImageUrl('principal')
+                        }
+                      </small>
+                    </div>
                     <img
                       src={getImageUrl('principal')}
                       alt="Vista previa principal"
+                      onLoad={(e) => {
+                        console.log('Imagen principal cargada correctamente:', getImageUrl('principal'));
+                        e.target.nextSibling.style.display = 'none';
+                      }}
                       onError={(e) => {
+                        console.error('Error cargando imagen principal:', getImageUrl('principal'));
                         e.target.style.display = 'none';
                         e.target.nextSibling.style.display = 'block';
                       }}
@@ -244,10 +263,23 @@ export default function ProductoFormPage({ onToggleTheme, theme, onCartClick }) 
                 {getImageUrl('zoom') && (
                   <div className={styles.imagePreview}>
                     <div className={styles.imagePreviewHeader}>Imagen Zoom</div>
+                    <div className={styles.urlDisplay}>
+                      <small title={getImageUrl('zoom')}>
+                        {getImageUrl('zoom').length > 50 
+                          ? `${getImageUrl('zoom').substring(0, 50)}...` 
+                          : getImageUrl('zoom')
+                        }
+                      </small>
+                    </div>
                     <img
                       src={getImageUrl('zoom')}
                       alt="Vista previa zoom"
+                      onLoad={(e) => {
+                        console.log('Imagen zoom cargada correctamente:', getImageUrl('zoom'));
+                        e.target.nextSibling.style.display = 'none';
+                      }}
                       onError={(e) => {
+                        console.error('Error cargando imagen zoom:', getImageUrl('zoom'));
                         e.target.style.display = 'none';
                         e.target.nextSibling.style.display = 'block';
                       }}
