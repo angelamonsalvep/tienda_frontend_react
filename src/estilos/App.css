@@ -7,6 +7,13 @@
   --color-btn-bg: #1976d2;
   --color-btn-text: #fff;
   --color-price: #2e7d32;
+  
+  /* Additional theme variables */
+  --border-color: #e0e0e0;
+  --background-light: #f8f9fa;
+  --primary-color: #1976d2;
+  --primary-hover: #1565c0;
+  --text-primary: #333;
 }
 
 body.dark {
@@ -17,6 +24,14 @@ body.dark {
   --color-btn-bg: #388e3c;
   --color-btn-text: #fff;
   --color-price: #4fd44f;
+  
+  /* Additional theme variables for dark mode */
+  --border-color: #4a5568;
+  --background-light: #2d3748;
+  --primary-color: #64b5f6;
+  --primary-hover: #42a5f5;
+  --text-primary: #f7fafc;
+  
   background: #181a20 !important;
   color: #060606 !important;
 }
