@@ -1,5 +1,6 @@
 // Servicio para consumir el endpoint de pedidos
-const PEDIDO_URL = "http://127.0.0.1:5000/pedidos";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const PEDIDO_URL = `${API_BASE_URL}/pedidos`;
 
 export async function crearPedido({ id_usuario, fecha_pedido, total }) {
   const response = await fetch(PEDIDO_URL, {

@@ -1,7 +1,7 @@
 // src/services/analiticaService.js
 // Servicio para consumir los endpoints de analítica del backend
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
 /**
  * Obtiene los productos más vendidos o con más ingresos en el rango de días.
