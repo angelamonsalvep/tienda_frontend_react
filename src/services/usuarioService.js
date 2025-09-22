@@ -1,6 +1,7 @@
 // Servicio para consumir endpoints relacionados a usuarios
 
-const API_URL = "http://127.0.0.1:5000/usuarios";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const API_URL = `${API_BASE_URL}/usuarios`;
 
 export async function crearUsuario({ nombre_usuario, email }) {
   const response = await fetch(API_URL, {

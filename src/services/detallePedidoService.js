@@ -1,5 +1,6 @@
 // Servicio para consumir el endpoint de detalles de pedido
-const DETALLE_URL = "http://127.0.0.1:5000/detalles_pedido";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const DETALLE_URL = `${API_BASE_URL}/detalles_pedido`;
 
 export async function crearDetallePedido({ id_pedido, id_producto, cantidad, precio_unitario }) {
   const response = await fetch(DETALLE_URL, {
