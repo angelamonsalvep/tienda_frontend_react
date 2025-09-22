@@ -16,14 +16,25 @@ function ProductRow({ product, onEdit, onDelete }) {
     setImageError(true);
   }, []);
 
-  const shouldShowImage = product.imagen_url && !imageError;
+  // Función para obtener la URL de la imagen principal
+  const getImageUrl = () => {
+    if (Array.isArray(product.imagen_url)) {
+      const principalImage = product.imagen_url.find(img => img.tipo === 'principal');
+      return principalImage ? principalImage.url : null;
+    }
+    // Compatibilidad con formato anterior (string)
+    return product.imagen_url;
+  };
+
+  const imageUrl = getImageUrl();
+  const shouldShowImage = imageUrl && !imageError;
 
   return (
     <tr>
       <td style={{ textAlign: 'center' }}>
         {shouldShowImage ? (
           <img
-            src={product.imagen_url}
+            src={imageUrl}
             alt={product.nombre_producto || product.nombre}
             className={styles.productImage}
             onError={handleImageError}
