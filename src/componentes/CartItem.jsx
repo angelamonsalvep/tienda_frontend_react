@@ -22,7 +22,18 @@ const CartItem = ({ item }) => {
     removeFromCart(item.id_producto);
   }, [removeFromCart, item.id_producto]);
 
-  const shouldShowImage = item.imagen_url && !imageError;
+  // Función para obtener la URL de imagen principal
+  const getImageUrl = () => {
+    if (Array.isArray(item.imagen_url)) {
+      const principalImage = item.imagen_url.find(img => img.tipo === 'principal');
+      return principalImage ? principalImage.url : null;
+    }
+    // Compatibilidad con formato anterior (string)
+    return item.imagen_url;
+  };
+
+  const imageUrl = getImageUrl();
+  const shouldShowImage = imageUrl && !imageError;
   const subtotal = item.precio * item.quantity;
 
   return (
@@ -30,7 +41,7 @@ const CartItem = ({ item }) => {
       <div className={styles.productImage}>
         {shouldShowImage ? (
           <img 
-            src={item.imagen_url} 
+            src={imageUrl} 
             alt={item.nombre_producto}
             onError={handleImageError}
           />
