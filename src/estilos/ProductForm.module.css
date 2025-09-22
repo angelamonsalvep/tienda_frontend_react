@@ -1,0 +1,437 @@
+/* Estilos para el formulario de productos */
+.productFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: 0.5rem;
+}
+
+.productForm {
+  background: var(--color-card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  max-height: 95vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenido del formulario con mejor distribución de espacio */
+.formContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.formTitle {
+  color: var(--color-card-text);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+}
+
+.formSubtitle {
+  color: var(--color-card-text);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.formGridTwoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Nuevo grid principal para información básica */
+.formGridMain {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 2fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  align-items: start;
+}
+
+/* Nuevo grid para imágenes */
+.formGridImages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Sección de inputs de imágenes */
+.imageInputsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Sección de vistas previas */
+.imagePreviewsSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formField.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.formField.twoThirds {
+  grid-column: span 2;
+}
+
+/* Campo de descripción en el grid principal */
+.descriptionField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.descriptionField .formTextarea {
+  min-height: 80px;
+  max-height: 100px;
+}
+
+.fieldLabel {
+  color: var(--color-card-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fieldIcon {
+  font-size: 0.9rem;
+}
+
+.formInput,
+.formTextarea {
+  padding: 0.625rem 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  outline: none;
+  background: var(--color-card-bg);
+  color: var(--color-card-text);
+  transition: all 0.3s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+  transform: translateY(-1px);
+}
+
+.formInput:hover,
+.formTextarea:hover {
+  border-color: var(--primary-color);
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: var(--color-card-text);
+  opacity: 0.6;
+}
+
+.priceInputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currencySymbol {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-card-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.priceInput {
+  padding-left: 1.75rem !important;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 80px;
+  max-height: 120px;
+}
+
+.fieldHelper {
+  font-size: 0.75rem;
+  color: var(--color-card-text);
+  opacity: 0.6;
+  margin-top: 0.25rem;
+}
+
+.formActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+}
+
+.primaryBtn {
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  border: none;
+  border-radius: 6px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 120px;
+}
+
+.primaryBtn:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
+}
+
+.primaryBtn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.3);
+}
+
+.primaryBtn:disabled {
+  background: #bdbdbd;
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+  transform: none;
+}
+
+.secondaryBtn {
+  background: var(--background-light);
+  color: var(--color-card-text);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.secondaryBtn:hover {
+  background: var(--color-card-bg);
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.secondaryBtn:active {
+  transform: translateY(0);
+}
+
+.loadingState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--color-card-text);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.imagePreview {
+  background: var(--color-card-bg);
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  max-height: 140px;
+  padding: 0.5rem;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.imagePreview:hover {
+  border-color: var(--primary-color);
+}
+
+.imagePreviewHeader {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-card-text);
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.imagePreview img {
+  max-width: 100%;
+  max-height: 100px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.noImageText {
+  color: var(--danger-color, #f44336);
+  font-size: 0.875rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (min-width: 1200px) {
+  .productForm {
+    max-width: 1400px;
+    padding: 2rem;
+  }
+  
+  .formGridMain {
+    grid-template-columns: 2fr 1.5fr 2.5fr;
+    gap: 2.5rem;
+  }
+  
+  .formGridImages {
+    gap: 2.5rem;
+  }
+  
+  .imagePreviewsSection {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .productForm {
+    max-width: 900px;
+  }
+  
+  .formGridMain {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .descriptionField {
+    grid-column: 1 / -1;
+  }
+  
+  .formGridImages {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .imagePreviewsSection {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .productFormContainer {
+    padding: 0.5rem;
+  }
+
+  .productForm {
+    padding: 1rem;
+    border-radius: 8px;
+    max-height: 90vh;
+  }
+
+  .formGridMain,
+  .formGridTwoColumns,
+  .formGridImages {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .descriptionField {
+    grid-column: 1;
+  }
+  
+  .imageInputsSection {
+    gap: 1rem;
+  }
+  
+  .imagePreviewsSection {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .formField.fullWidth,
+  .formField.twoThirds {
+    grid-column: 1;
+  }
+
+  .formActions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .imagePreview {
+    margin-top: 0;
+    min-height: 120px;
+    max-height: 140px;
+  }
+  
+  .imagePreview img {
+    max-height: 100px;
+  }
+  
+  .descriptionField .formTextarea {
+    min-height: 60px;
+    max-height: 80px;
+  }
+}
