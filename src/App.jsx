@@ -28,7 +28,7 @@ function App() {
       const resp = await procesarPago(paymentData, cart);
       
       // Calcular el total del carrito
-      const totalAmount = cart.reduce((sum, item) => sum + item.precio, 0);
+      const totalAmount = cart.reduce((sum, item) => sum + (item.precio * item.quantity), 0);
       
       // Configurar información del modal
       const modalInfo = {

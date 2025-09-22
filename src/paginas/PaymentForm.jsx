@@ -5,7 +5,7 @@ import styles from '../estilos/PaymentForm.module.css';
 
 
 const PaymentFormPage = ({ cart, onPay }) => {
-	const totalAmount = cart.reduce((sum, item) => sum + item.precio, 0);
+	const totalAmount = cart.reduce((sum, item) => sum + (item.precio * item.quantity), 0);
 	return (
 		<div className={styles.paymentPageContainer}>
 			<PaymentForm totalAmount={totalAmount} cart={cart} onPay={onPay} />
